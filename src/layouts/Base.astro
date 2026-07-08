@@ -1,0 +1,99 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'ODPS Family Validator — Validate Open Data Products Standards Online',
+  description = 'Free online validator for the Open Data Products standards family: ODPS 4.x, ODPC, ODPG, and ODPV. Paste YAML or JSON and get instant in-browser schema validation.',
+  canonical = 'https://odps-validator.com/',
+} = Astro.props;
+
+const webAppJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'ODPS Family Validator',
+  url: 'https://odps-validator.com',
+  description,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Web Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  featureList: [
+    'Validate ODPS data product YAML and JSON',
+    'Validate ODPC catalogs, ODPG graphs, and ODPV vocabulary',
+    'Support for ODPS 4.1 and 4.0',
+    'Automatic document kind and version detection',
+    'Instant error highlighting with field paths',
+    'Multiple example documents to try',
+  ],
+};
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the Open Data Product Specification (ODPS)?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'ODPS is a Linux Foundation open specification (Apache 2.0) for machine-readable data product metadata — covering product details, SLA, data quality, pricing, licensing, access, and business strategy.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Which standards does this validator support?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'ODPS 4.1 and 4.0, ODPC 1.0 (catalogs), ODPG 1.0 (graphs), and ODPV 1.0 (vocabulary). The validator auto-detects the document kind from structure and the version field.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is my document sent to a server?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. All validation runs entirely in your browser. JSON Schemas are bundled with the page. Your document never leaves your machine.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between version and productVersion in ODPS?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'version is the ODPS specification version (e.g. 4.1). productVersion is the data product\'s own semver, tracking how the product metadata has changed over time.',
+      },
+    },
+  ],
+};
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="ODPS Family Validator" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(webAppJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

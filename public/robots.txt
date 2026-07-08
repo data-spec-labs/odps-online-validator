@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://odps-validator.com/sitemap-index.xml
