@@ -1,6 +1,6 @@
 # ODPS Family Validator
 
-[![Uptime](https://img.shields.io/uptimerobot/status/m803437361-6f635b0b65422c823e511e2d?style=flat-square)](https://odps-validator.com/)
+[![Uptime](https://img.shields.io/uptimerobot/status/m803470989-1b1614aa5fda8a44f78aa02a?style=flat-square)](https://odps-validator.com/)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/data-spec-labs/odps-online-validator/build.yml?branch=main&style=flat-square)](https://github.com/data-spec-labs/odps-online-validator/actions)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 [![GitHub issues](https://img.shields.io/github/issues/data-spec-labs/odps-online-validator?style=flat-square)](https://github.com/data-spec-labs/odps-online-validator/issues)
