@@ -92,6 +92,16 @@ const faqJsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(webAppJsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N7J8B1HFJM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-N7J8B1HFJM');
+    </script>
+
   </head>
   <body>
     <slot />
