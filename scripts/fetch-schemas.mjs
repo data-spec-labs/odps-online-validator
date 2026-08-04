@@ -26,6 +26,10 @@ const SCHEMAS = [
     file: 'odpv-1.0.json',
     url: 'https://raw.githubusercontent.com/Open-Data-Product-Initiative/odpv-v1.0/main/source/schema/odpv.schema.json',
   },
+  {
+    file: 'bitol-odps-1.0.0.json',
+    url: 'https://raw.githubusercontent.com/bitol-io/open-data-product-standard/main/schema/odps-json-schema-latest.json',
+  },
 ];
 
 await mkdir(schemasDir, { recursive: true });

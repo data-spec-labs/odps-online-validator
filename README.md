@@ -8,16 +8,16 @@
 [![Built with Astro](https://img.shields.io/badge/Built__with-Astro-ff5d01?style=flat-square&logo=astro)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind__CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 
-Free online validator for the [Open Data Products standards family](https://opendataproducts.org/). Paste a YAML or JSON document and get instant schema validation with clear error paths.
+Free online validator for the [Open Data Products standards family](https://opendataproducts.org/) and the [Bitol Open Data Product Standard](https://github.com/bitol-io/open-data-product-standard). Paste a YAML or JSON document and get instant schema validation with clear error paths.
 
-Supports **ODPS 4.1**, **ODPS 4.0**, **ODPC 1.0**, **ODPG 1.0**, and **ODPV 1.0**.
+Supports **ODPS Spec 4.1**, **ODPS Spec 4.0**, **ODPS Standard (Bitol) 1.0.0 / 0.9.0**, **ODPC 1.0**, **ODPG 1.0**, and **ODPV 1.0**.
 
 **Live site:** [https://odps-validator.com/](https://odps-validator.com/)
 
 ## Features
 
-- Validates ODPS-family documents in **YAML** or **JSON**
-- Auto-detects document kind (ODPS, ODPC, ODPG, ODPV) and **version**
+- Validates ODPS Spec, Bitol ODPS Standard, ODPC, ODPG, and ODPV documents in **YAML** or **JSON**
+- Auto-detects document kind and **version** (`version` for the LF family; `apiVersion` for Bitol)
 - Runs entirely in the browser — your document is never sent to a server
 - Built-in example documents for each standard
 
@@ -39,7 +39,7 @@ npm run dev
 
 ## Stack
 
-Astro 7 · React · Tailwind CSS · AJV · official JSON Schemas from [Open-Data-Product-Initiative](https://github.com/Open-Data-Product-Initiative)
+Astro 7 · React · Tailwind CSS · AJV · official JSON Schemas from [Open-Data-Product-Initiative](https://github.com/Open-Data-Product-Initiative) and [bitol-io/open-data-product-standard](https://github.com/bitol-io/open-data-product-standard)
 
 ## License
 

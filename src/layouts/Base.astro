@@ -7,7 +7,7 @@ interface Props {
 
 const {
   title = 'ODPS Family Validator — Validate Open Data Products Standards Online',
-  description = 'Free online validator for the Open Data Products standards family: ODPS 4.x, ODPC, ODPG, and ODPV. Paste YAML or JSON and get instant in-browser schema validation.',
+  description = 'Free online validator for ODPS Spec 4.x, Bitol ODPS Standard 1.0, ODPC, ODPG, and ODPV. Paste YAML or JSON and get instant in-browser schema validation.',
   canonical = 'https://odps-validator.com/',
 } = Astro.props;
 
@@ -21,9 +21,10 @@ const webAppJsonLd = {
   operatingSystem: 'Web Browser',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   featureList: [
-    'Validate ODPS data product YAML and JSON',
+    'Validate ODPS Spec (LF) data product YAML and JSON',
+    'Validate Bitol ODPS Standard (kind: DataProduct)',
     'Validate ODPC catalogs, ODPG graphs, and ODPV vocabulary',
-    'Support for ODPS 4.1 and 4.0',
+    'Support for ODPS Spec 4.1 and 4.0, Bitol ODPS 1.0.0 and 0.9.0',
     'Automatic document kind and version detection',
     'Instant error highlighting with field paths',
     'Multiple example documents to try',
@@ -36,10 +37,18 @@ const faqJsonLd = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is the Open Data Product Specification (ODPS)?',
+      name: 'What is the Open Data Product Specification (ODPS Spec)?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ODPS is a Linux Foundation open specification (Apache 2.0) for machine-readable data product metadata — covering product details, SLA, data quality, pricing, licensing, access, and business strategy.',
+        text: 'ODPS Spec is a Linux Foundation open specification (Apache 2.0) for machine-readable data product metadata — covering product details, SLA, data quality, pricing, licensing, access, and business strategy.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are there two different standards both called ODPS?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. ODPS Spec (Open Data Product Specification) from opendataproducts.org uses a product root object and versions 4.x. ODPS Standard (Bitol) uses apiVersion, kind: DataProduct, and ports. This validator supports both and labels them distinctly.',
       },
     },
     {
@@ -47,7 +56,7 @@ const faqJsonLd = {
       name: 'Which standards does this validator support?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ODPS 4.1 and 4.0, ODPC 1.0 (catalogs), ODPG 1.0 (graphs), and ODPV 1.0 (vocabulary). The validator auto-detects the document kind from structure and the version field.',
+        text: 'ODPS Spec 4.1 and 4.0, Bitol ODPS Standard 1.0.0 and 0.9.0, ODPC 1.0 (catalogs), ODPG 1.0 (graphs), and ODPV 1.0 (vocabulary). The validator auto-detects the document kind from structure and the appropriate version field.',
       },
     },
     {
@@ -60,10 +69,10 @@ const faqJsonLd = {
     },
     {
       '@type': 'Question',
-      name: 'What is the difference between version and productVersion in ODPS?',
+      name: 'What is the difference between version and productVersion in ODPS Spec?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'version is the ODPS specification version (e.g. 4.1). productVersion is the data product\'s own semver, tracking how the product metadata has changed over time.',
+        text: 'version is the ODPS Spec version (e.g. 4.1). productVersion is the data product\'s own semver, tracking how the product metadata has changed over time. In Bitol ODPS Standard, apiVersion is the standard version.',
       },
     },
   ],

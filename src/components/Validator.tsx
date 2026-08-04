@@ -55,6 +55,23 @@ product:
       governanceProfile: structured
 `;
 
+const EXAMPLE_BITOL_ODPS = `apiVersion: v1.0.0
+kind: DataProduct
+id: 064c4630-8aad-4dc0-ba95-0f69940e6b18
+status: active
+name: Simple Data Product
+version: v1.0.0
+description:
+  purpose: Simple test data product
+inputPorts:
+  - name: source-data
+    version: 1.0.0
+    contractId: 12345678-1234-1234-1234-123456789abc
+outputPorts:
+  - name: processed-data
+    version: 1.0.0
+`;
+
 const EXAMPLE_ODPC = `schema: https://opendataproducts.org/odpc-v1.0/schema/odpc.yaml
 version: "1.0"
 kind: Catalog
@@ -129,12 +146,13 @@ product:
 `;
 
 const EXAMPLES = [
-  { label: 'ODPS — minimal valid (4.1)', value: EXAMPLE_ODPS_MINIMAL },
-  { label: 'ODPS — full with productStrategy', value: EXAMPLE_ODPS_FULL },
+  { label: 'ODPS Spec — minimal valid (4.1)', value: EXAMPLE_ODPS_MINIMAL },
+  { label: 'ODPS Spec — full with productStrategy', value: EXAMPLE_ODPS_FULL },
+  { label: 'ODPS Standard (Bitol) — minimal', value: EXAMPLE_BITOL_ODPS },
   { label: 'ODPC — catalog', value: EXAMPLE_ODPC },
   { label: 'ODPG — graph', value: EXAMPLE_ODPG },
   { label: 'ODPV — vocabulary', value: EXAMPLE_ODPV },
-  { label: 'Invalid ODPS (to see errors)', value: EXAMPLE_INVALID },
+  { label: 'Invalid ODPS Spec (to see errors)', value: EXAMPLE_INVALID },
 ];
 
 type UIState =
@@ -171,7 +189,7 @@ export default function Validator() {
     }
 
     const docKind = detectDocumentKind(parseResult.data);
-    const version = extractVersion(parseResult.data);
+    const version = extractVersion(parseResult.data, docKind);
     const result = validateDocument(parseResult.data, docKind, version);
     setUiState(result.valid
       ? { kind: 'valid', result, format: parseResult.format }
@@ -256,7 +274,7 @@ export default function Validator() {
               value={input}
               onChange={setInput}
               format={editorFormat}
-              placeholder={`Paste your ODPS-family document here…\n\nschema: https://opendataproducts.org/v4.1/schema/odps.yaml\nversion: "4.1"\nproduct:\n  details:\n    en:\n      name: My Data Product\n      productID: my-product-001\n      visibility: organisation\n      status: draft\n      type: dataset`}
+              placeholder={`Paste your ODPS Spec, ODPS Standard (Bitol), ODPC, ODPG, or ODPV document here…\n\nschema: https://opendataproducts.org/v4.1/schema/odps.yaml\nversion: "4.1"\nproduct:\n  details:\n    en:\n      name: My Data Product\n      productID: my-product-001\n      visibility: organisation\n      status: draft\n      type: dataset`}
               className="h-full"
             />
           </div>
@@ -306,7 +324,7 @@ function ExamplesDropdown({ onSelect }: { onSelect: (val: string) => void }) {
         Load example ▾
       </button>
       {open && (
-        <div className="absolute left-0 top-full mt-1 z-20 w-72 rounded-xl bg-white shadow-lg border border-slate-200 overflow-hidden">
+        <div className="absolute left-0 top-full mt-1 z-20 w-80 rounded-xl bg-white shadow-lg border border-slate-200 overflow-hidden">
           {EXAMPLES.map((ex) => (
             <button
               key={ex.label}
@@ -331,7 +349,7 @@ function ResultsPanel({ state }: { state: UIState }) {
         <svg className="w-12 h-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
-        <p className="text-sm text-slate-700 text-center px-6">Paste an ODPS-family document on the left to see validation results here.</p>
+        <p className="text-sm text-slate-700 text-center px-6">Paste an ODPS Spec, Bitol ODPS Standard, ODPC, ODPG, or ODPV document on the left to see validation results here.</p>
       </div>
     );
   }

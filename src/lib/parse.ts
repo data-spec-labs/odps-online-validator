@@ -59,13 +59,16 @@ export function normalizeVersion(version: unknown): string | undefined {
   return trimmed.replace(/^v/i, '');
 }
 
-/** Extract root version from a parsed document. */
-export function extractVersion(data: unknown): string | undefined {
+/** Extract the standard version from a parsed document. */
+export function extractVersion(data: unknown, kind?: DocKind): string | undefined {
   if (!isRecord(data)) return undefined;
+  if (kind === 'bitol-odps' || data.kind === 'DataProduct') {
+    return normalizeVersion(data.apiVersion);
+  }
   return normalizeVersion(data.version);
 }
 
-/** Detect which ODPS-family standard a parsed document belongs to. */
+/** Detect which ODPS-family (or Bitol ODPS) standard a parsed document belongs to. */
 export function detectDocumentKind(data: unknown): DocKind | undefined {
   if (!isRecord(data)) return undefined;
 
@@ -73,9 +76,17 @@ export function detectDocumentKind(data: unknown): DocKind | undefined {
   if (kind === 'Catalog') return 'odpc';
   if (kind === 'Graph') return 'odpg';
   if (kind === 'Vocabulary') return 'odpv';
+  if (kind === 'DataProduct') return 'bitol-odps';
 
   if (data.id === 'ODPV' || (Array.isArray(data.sections) && 'publisher' in data)) {
     return 'odpv';
+  }
+
+  if (
+    'apiVersion' in data &&
+    (Array.isArray(data.inputPorts) || Array.isArray(data.outputPorts))
+  ) {
+    return 'bitol-odps';
   }
 
   if ('product' in data) return 'odps';

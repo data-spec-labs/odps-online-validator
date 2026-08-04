@@ -91,7 +91,7 @@ export function validateDocument(
         {
           path: '(root)',
           message:
-            'Could not detect document kind. Expected ODPS (product), ODPC (kind: Catalog), ODPG (kind: Graph), or ODPV (id: ODPV).',
+            'Could not detect document kind. Expected ODPS Spec (product), ODPS Standard / Bitol (kind: DataProduct), ODPC (kind: Catalog), ODPG (kind: Graph), or ODPV (id: ODPV).',
           keyword: 'documentKind',
         },
       ],
