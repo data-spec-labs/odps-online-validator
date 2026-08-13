@@ -11,9 +11,8 @@ export default defineConfig({
     react(),
     sitemap(),
     indexnow({
-      host: 'https://odps-validator.com',
-      key: '62aba8d483f849bd87bafc35f5141bec',
-      keyLocation: 'https://odps-validator.com',
+      host: 'odps-validator.com',
+      key: '62aba8d483f849bd87bafc35f5141bec'
     })
   ],
   vite: {
